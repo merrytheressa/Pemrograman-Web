@@ -65,7 +65,7 @@ section h2 {
 }
 /* ===== Kartu Statistik (CSS Grid) ===== */
 main section:nth-of-type(2) {
-    display: grid;
+    display: block;
     grid-template-columns: repeat(3, 1fr);
     gap: 1rem;
 }
