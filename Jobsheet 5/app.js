@@ -78,3 +78,11 @@ function initValidasiForm() {
         }
     });
 }
+
+// ===== Inisialisasi Utama Saat Halaman Selesai Load =====
+document.addEventListener("DOMContentLoaded", function () {
+    initNavToggle();
+    initHapusConfirm();
+    initTableFilter();
+    initValidasiForm();
+});
