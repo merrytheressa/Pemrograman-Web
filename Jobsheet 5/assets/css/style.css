@@ -4,12 +4,14 @@
     margin: 0;
     padding: 0;
 }
+
 body {
     font-family: "Segoe UI", Arial, sans-serif;
     color: #2b2b2b;
     background-color: #f5f6f8;
     line-height: 1.5;
 }
+
 a {
     color: #1d5b8a;
     text-decoration: none;
@@ -44,6 +46,7 @@ header nav a {
     color: #fff;
     font-weight: 500;
 }
+
 /* ===== Main Layout ===== */
 main {
     max-width: 1000px;
@@ -64,11 +67,16 @@ section h2 {
     color: #1d5b8a;
 }
 
-/* ===== Kartu Statistik (CSS Grid) ===== */
+/* ===== Kartu Statistik (CSS Grid - Default 3 Kolom) ===== */
 main section:nth-of-type(2) {
-    display: block;
+    display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1rem;
+}
+
+/* FIX: Supaya h2 memenuhi 3 kolom dan kartu statistik menyamping di bawahnya */
+main section:nth-of-type(2) h2 {
+    grid-column: 1 / -1;
 }
 
 main section:nth-of-type(2) article {
@@ -134,7 +142,7 @@ td button:last-of-type {
     color: #fff;
 }
 
-/* ===== Form ===== */
+/* ===== Form & Validasi Error ===== */
 form p {
     margin-bottom: 1rem;
 }
@@ -170,102 +178,6 @@ form button[type="submit"]:hover {
     background-color: #164869;
 }
 
-/* ===== Footer ===== */
-footer {
-    text-align: center;
-    padding: 1.25rem;
-    color: #7a8794;
-    font-size: 0.9rem;
-}
-
-/* ===== Hamburger Menu (checkbox hack) ===== */
-.nav-toggle-label {
-    display: none;
-    font-size: 1.6rem;
-    color: #fff;
-    background: none;
-    border: none;
-    cursor: pointer;
-}
-
-@media (max-width: 768px) {
-    header {
-    position: relative;
-    }
-
-    .nav-toggle-label {
-        display: block;
-    }
-
-    header nav {
-        display: none;
-        width: 100%;
-        order: 3;
-        margin-top: 1rem;
-    }
-
-    .nav-toggle:checked ~ nav {
-        display: block;
-    }
-
-    header nav ul {
-        flex-direction: column;
-        gap: 0.75rem;
-    }
-
-    main section:nth-of-type(2) {
-        grid-template-columns: 1fr;
-    }
-}
-
-/* ===== Tabel Responsif ===== */
-.table-responsive {
-    overflow-x: auto;
-}
-
-/* ===== Responsive Breakpoints ===== */
-
-/* Tablet ke bawah */
-@media (max-width: 768px) {
-    main section:nth-of-type(2) {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-/* Mobile */
-@media (max-width: 480px) {
-    header {
-        position: relative;
-    }
-
-    .nav-toggle-label {
-        display: block;
-    }
-
-    header nav.nav-open {
-        display: block;
-    }
-
-    .nav-toggle:checked ~ nav {
-        display: block;
-    }
-
-    header nav ul {
-        flex-direction: column;
-        gap: 0.75rem;
-    }
-
-    main section:nth-of-type(2) {
-        grid-template-columns: 1fr;
-    }
-
-    form input,
-    form select {
-        max-width: 100%;
-    }
-}
-
-/* ===== Pesan Error Validasi ===== */
 .error {
     display: block;
     color: #d9534f;
@@ -286,3 +198,75 @@ footer {
     border-radius: 4px;
 }
 
+/* ===== Footer ===== */
+footer {
+    text-align: center;
+    padding: 1.25rem;
+    color: #7a8794;
+    font-size: 0.9rem;
+}
+
+/* ===== Element Pendukung Responsif ===== */
+.nav-toggle-label {
+    display: none;
+    font-size: 1.6rem;
+    color: #fff;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.table-responsive {
+    overflow-x: auto;
+}
+
+/* ========================================================= */
+/* DUA BLOK MEDIA QUERY DI PALING BAWAH FILE (DESKTOP-FIRST)  */
+/* ========================================================= */
+
+/* Tablet (<= 768px) */
+@media (max-width: 768px) {
+    header {
+        position: relative;
+    }
+
+    .nav-toggle-label {
+        display: block;
+        position: absolute;
+        top: 1rem;
+        right: 1.5rem;
+    }
+
+    header nav {
+        display: none;
+        width: 100%;
+        order: 3;
+        margin-top: 1rem;
+    }
+
+    /* Mendukung kontrol Menu Navigasi via JavaScript */
+    header nav.nav-open {
+        display: block;
+    }
+
+    header nav ul {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    main section:nth-of-type(2) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Mobile (<= 480px) */
+@media (max-width: 480px) {
+    main section:nth-of-type(2) {
+        grid-template-columns: 1fr;
+    }
+
+    form input,
+    form select {
+        max-width: 100%;
+    }
+}

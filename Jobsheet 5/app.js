@@ -8,6 +8,7 @@ function initNavToggle() {
         nav.classList.toggle("nav-open");
     });
 }
+document.addEventListener("DOMContentLoaded", initNavToggle);
 
 // ===== Konfirmasi hapus (front-end only, belum ke server) =====
 function initHapusConfirm() {
